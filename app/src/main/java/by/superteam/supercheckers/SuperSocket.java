@@ -38,7 +38,7 @@ public class SuperSocket {
     public final static int WIDTH = 600;
     public final static int HEIGHT = 600;
     final int port = 6666;
- static GoogleApiClient client;
+    static GoogleApiClient client;
     public static void conectAsClient(Intent intent,Context context){
         IntentIntegrator integrator = new IntentIntegrator((Activity) context);
         integrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE_TYPES);
@@ -52,58 +52,58 @@ public class SuperSocket {
         client = new GoogleApiClient.Builder(context).addApi(AppIndex.API).build();
     }
     public static void host(final Intent intent, final Context context,ImageView forQRcode){
-         // случайный порт (может быть любое число от 1025 до 65535)
+        // случайный порт (может быть любое число от 1025 до 65535)
         try {
             forQRcode.setImageBitmap(encodeAsBitmap(getIpAddress())); (new Thread(new Runnable() {
+                @Override
+                public void run() {
+
+
+
+                    try {
+                        ServerSocket ss = new ServerSocket(port); // создаем сокет сервера и привязываем его к вышеуказанному порту
+                        System.out.println("Waiting for a client...");
+
+                        socket = ss.accept(); // заставляем сервер ждать подключений и выводим сообщение когда кто-то связался с сервером
+                        System.out.println("Got a client :) ... Finally, someone saw me through all the cover!");
+                        System.out.println();
+
+                        context.startActivity(intent);
+
+                    } catch(Exception x) { x.printStackTrace();
+                    }
+                }})).start();
+        } catch (WriterException e) {
+            e.printStackTrace();
+        }
+    }
+    public static void forActivityResult(String result, final Intent intent, final Context context){
+        final String address = result; // это IP-адрес компьютера, где исполняется наша серверная программа.
+        // Здесь указан адрес того самого компьютера где будет исполняться и клиент.
+        (new Thread(new Runnable() {
             @Override
             public void run() {
-
-
-
                 try {
-                    ServerSocket ss = new ServerSocket(port); // создаем сокет сервера и привязываем его к вышеуказанному порту
-                    System.out.println("Waiting for a client...");
+                    InetAddress ipAddress = InetAddress.getByName(address); // создаем объект который отображает вышеописанный IP-адрес.
+                    System.out.println("Any of you heard of a socket with IP address " + address + " and port " + port + "?");
+                    socket = new Socket(ipAddress, port); // создаем сокет используя IP-адрес и порт сервера.
+                    System.out.println("Yes! I just got hold of the program.");
 
-                    socket = ss.accept(); // заставляем сервер ждать подключений и выводим сообщение когда кто-то связался с сервером
-                    System.out.println("Got a client :) ... Finally, someone saw me through all the cover!");
-                    System.out.println();
+
 
                     context.startActivity(intent);
 
-                } catch(Exception x) { x.printStackTrace();
+                } catch (UnknownHostException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
-            }})).start();
-        } catch (WriterException e) {
-        e.printStackTrace();
-    }
-    }
-public static void forActivityResult(String result, final Intent intent, final Context context){
-    final String address = result; // это IP-адрес компьютера, где исполняется наша серверная программа.
-    // Здесь указан адрес того самого компьютера где будет исполняться и клиент.
-    (new Thread(new Runnable() {
-        @Override
-        public void run() {
-            try {
-                InetAddress ipAddress = InetAddress.getByName(address); // создаем объект который отображает вышеописанный IP-адрес.
-                System.out.println("Any of you heard of a socket with IP address " + address + " and port " + port + "?");
-                socket = new Socket(ipAddress, port); // создаем сокет используя IP-адрес и порт сервера.
-                System.out.println("Yes! I just got hold of the program.");
 
-
-
-                context.startActivity(intent);
-
-            } catch (UnknownHostException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
             }
-
-        }
-    })).start();
+        })).start();
 
 
-}
+    }
 
     public static String getIpAddress() {
         try {
@@ -145,25 +145,25 @@ public static void forActivityResult(String result, final Intent intent, final C
         bitmap.setPixels(pixels, 0, WIDTH, 0, 0, w, h);
         return bitmap;
     }
-public static void send(int []mas) throws IOException {
-    // Берем входной и выходной потоки сокета, теперь можем получать и отсылать данные клиенту.
+    public static void send(int []mas) throws IOException {
+        // Берем входной и выходной потоки сокета, теперь можем получать и отсылать данные клиенту.
 
-    OutputStream sout = socket.getOutputStream();
+        OutputStream sout = socket.getOutputStream();
 
-    // Конвертируем потоки в другой тип, чтоб легче обрабатывать текстовые сообщения.
+        // Конвертируем потоки в другой тип, чтоб легче обрабатывать текстовые сообщения.
 
-    DataOutputStream out = new DataOutputStream(sout);
-out.writeUTF(mas[0]+"---"+mas[1]);
-    out.flush();
-}
+        DataOutputStream out = new DataOutputStream(sout);
+        out.writeUTF(mas[0]+"---"+mas[1]);
+        out.flush();
+    }
     public static void startChecking() throws IOException {
         InputStream sin = socket.getInputStream();
         DataInputStream in = new DataInputStream(sin);
         while(true) {
-           String line = in.readUTF(); // ожидаем пока клиент пришлет строку текста.
+            String line = in.readUTF(); // ожидаем пока клиент пришлет строку текста.
             System.out.println("The dumb client just sent me this line : " + line);
             System.out.println("I'm sending it back...");
-           onTextGotted(line);
+            onTextGotted(line);
             System.out.println("Waiting for the next line...");
             System.out.println();
         }
