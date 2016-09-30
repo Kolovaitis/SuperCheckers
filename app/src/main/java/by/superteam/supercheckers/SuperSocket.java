@@ -14,7 +14,11 @@ import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.integration.android.IntentIntegrator;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
@@ -34,8 +38,8 @@ public class SuperSocket {
     public final static int WIDTH = 600;
     public final static int HEIGHT = 600;
     final int port = 6666;
-    private GoogleApiClient client;
-    public void conectAsClient(Intent intent,Context context){
+ static GoogleApiClient client;
+    public static void conectAsClient(Intent intent,Context context){
         IntentIntegrator integrator = new IntentIntegrator((Activity) context);
         integrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE_TYPES);
         integrator.setPrompt("Scan QR code");
@@ -47,7 +51,7 @@ public class SuperSocket {
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(context).addApi(AppIndex.API).build();
     }
-    public void host(final Intent intent, final Context context,ImageView forQRcode){
+    public static void host(final Intent intent, final Context context,ImageView forQRcode){
          // случайный порт (может быть любое число от 1025 до 65535)
         try {
             forQRcode.setImageBitmap(encodeAsBitmap(getIpAddress())); (new Thread(new Runnable() {
@@ -119,7 +123,7 @@ public static void forActivityResult(String result, final Intent intent, final C
         }
         return null;
     }
-    Bitmap encodeAsBitmap(String str) throws WriterException {
+    static Bitmap encodeAsBitmap(String str) throws WriterException {
         BitMatrix result;
         try {
             result = new MultiFormatWriter().encode(str,
@@ -141,5 +145,30 @@ public static void forActivityResult(String result, final Intent intent, final C
         bitmap.setPixels(pixels, 0, WIDTH, 0, 0, w, h);
         return bitmap;
     }
+public static void send(int []mas) throws IOException {
+    // Берем входной и выходной потоки сокета, теперь можем получать и отсылать данные клиенту.
 
+    OutputStream sout = socket.getOutputStream();
+
+    // Конвертируем потоки в другой тип, чтоб легче обрабатывать текстовые сообщения.
+
+    DataOutputStream out = new DataOutputStream(sout);
+out.writeUTF(mas[0]+"---"+mas[1]);
+    out.flush();
+}
+    public static void startChecking() throws IOException {
+        InputStream sin = socket.getInputStream();
+        DataInputStream in = new DataInputStream(sin);
+        while(true) {
+           String line = in.readUTF(); // ожидаем пока клиент пришлет строку текста.
+            System.out.println("The dumb client just sent me this line : " + line);
+            System.out.println("I'm sending it back...");
+           onTextGotted(line);
+            System.out.println("Waiting for the next line...");
+            System.out.println();
+        }
+    }
+    public static void onTextGotted(String text){
+        //место для метода при получении текста
+    }
 }
