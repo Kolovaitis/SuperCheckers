@@ -37,9 +37,9 @@ public class SuperSocket {
     public final static int BLACK = 0xFF000000;
     public final static int WIDTH = 600;
     public final static int HEIGHT = 600;
-    final int port = 6666;
+    final static int port = 6666;
     static GoogleApiClient client;
-    public static void conectAsClient(Intent intent,Context context){
+    public static void conectAsClient(Context context){
         IntentIntegrator integrator = new IntentIntegrator((Activity) context);
         integrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE_TYPES);
         integrator.setPrompt("Scan QR code");

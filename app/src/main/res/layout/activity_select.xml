@@ -7,30 +7,24 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="by.superteam.supercheckers.PlayActivity">
+    tools:context="by.superteam.supercheckers.SelectActivity">
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Common display mode"
-        android:id="@+id/button5"
-        android:layout_above="@+id/button6"
-        android:layout_centerHorizontal="true"
-        android:onClick="commonDisplay" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="2 players - 1 device"
-        android:id="@+id/button6"
+        android:text="host"
+        android:id="@+id/button"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:onClick="host" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="2 players separately"
-        android:id="@+id/button7"
-        android:layout_below="@+id/button6"
-        android:layout_centerHorizontal="true" />
+        android:text="Client"
+        android:id="@+id/button2"
+        android:layout_below="@+id/button"
+        android:layout_alignLeft="@+id/button"
+        android:layout_alignStart="@+id/button"
+        android:onClick="client" />
 </RelativeLayout>
