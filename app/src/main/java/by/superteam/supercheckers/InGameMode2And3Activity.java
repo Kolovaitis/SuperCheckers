@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.Toast;
@@ -1106,7 +1107,10 @@ public class InGameMode2And3Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.in_game_layout_mode_2_and_3);
         boolean isWhite = true;
+
         board = (TableLayout) findViewById(R.id.board);
+
+
 
 
         for (int i = 0; i < 8; i++) {
