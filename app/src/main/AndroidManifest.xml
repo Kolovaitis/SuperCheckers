@@ -28,6 +28,7 @@
         <activity android:name=".PlayActivity" />
         <activity android:name=".CommonDisplayActivity" />
         <activity android:name=".SelectActivity" />
+        <activity android:name=".InGameMode2And3Activity" />
         <activity android:name=".HostActivity"></activity>
     </application>
 

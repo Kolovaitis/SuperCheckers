@@ -12,9 +12,15 @@ public class PlayActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play);
     }
-    public void commonDisplay(View v){
-        Intent intent=new Intent(this,SelectActivity.class);
+
+    public void commonDisplay(View v) {
+        Intent intent = new Intent(this, SelectActivity.class);
         startActivity(intent);
 
+    }
+
+    public void oneDevice(View v) {
+        Intent intent = new Intent(this, InGameMode2And3Activity.class);
+        startActivity(intent);
     }
 }
