@@ -22,7 +22,7 @@ public class HostActivity extends AppCompatActivity {
             SuperSocket.host(new Intent(this,CommonDisplayActivity.class),this, ((ImageView)findViewById(R.id.imageView)));
         else if(getIntent().getStringExtra("activity").equals("wifi"))
             SuperSocket.host(new Intent(this,WirelessActivity.class),this, ((ImageView)findViewById(R.id.imageView)));
-
+WirelessActivity.user="host";
 
     }
 

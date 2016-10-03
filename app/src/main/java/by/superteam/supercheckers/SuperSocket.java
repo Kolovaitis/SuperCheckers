@@ -69,13 +69,14 @@ public class SuperSocket {
                         System.out.println();
 
                         context.startActivity(intent);
-
+startChecking();
                     } catch(Exception x) { x.printStackTrace();
                     }
                 }})).start();
         } catch (WriterException e) {
             e.printStackTrace();
         }
+
     }
     public static void forActivityResult(String result, final Intent intent, final Context context){
         final String address = result; // это IP-адрес компьютера, где исполняется наша серверная программа.
@@ -92,6 +93,12 @@ public class SuperSocket {
 
 
                     context.startActivity(intent);
+
+                    try {
+                        startChecking();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
 
                 } catch (UnknownHostException e) {
                     e.printStackTrace();
@@ -156,6 +163,18 @@ public class SuperSocket {
         out.writeUTF(mas[0]+"---"+mas[1]);
         out.flush();
     }
+    public static void send(String mas) throws IOException {
+        // Берем входной и выходной потоки сокета, теперь можем получать и отсылать данные клиенту.
+
+        OutputStream sout = socket.getOutputStream();
+
+        // Конвертируем потоки в другой тип, чтоб легче обрабатывать текстовые сообщения.
+
+        DataOutputStream out = new DataOutputStream(sout);
+        out.writeUTF(mas);
+        out.flush();
+
+    }
     public static void startChecking() throws IOException {
         InputStream sin = socket.getInputStream();
         DataInputStream in = new DataInputStream(sin);
@@ -166,6 +185,12 @@ public class SuperSocket {
             onTextGotted(line);
             System.out.println("Waiting for the next line...");
             System.out.println();
+            if(line.equals("white")) {
+                WirelessActivity.forclient(line);
+            }
+            if(line.equals("black")) {
+                WirelessActivity.forclient(line);
+            }
         }
     }
     public static void onTextGotted(String text){
