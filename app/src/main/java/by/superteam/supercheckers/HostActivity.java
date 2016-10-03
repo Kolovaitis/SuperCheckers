@@ -18,7 +18,11 @@ public class HostActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_host);
-        SuperSocket.host(new Intent(this,CommonDisplayActivity.class),this, ((ImageView)findViewById(R.id.imageView)));
+        if(getIntent().getStringExtra("activity").equals("Common"))
+            SuperSocket.host(new Intent(this,CommonDisplayActivity.class),this, ((ImageView)findViewById(R.id.imageView)));
+        else if(getIntent().getStringExtra("activity").equals("wifi"))
+            SuperSocket.host(new Intent(this,WirelessActivity.class),this, ((ImageView)findViewById(R.id.imageView)));
+
 
     }
 

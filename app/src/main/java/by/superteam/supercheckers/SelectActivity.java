@@ -25,6 +25,7 @@ public class SelectActivity extends AppCompatActivity {
     }
     public void host(View v) {
         Intent intent = new Intent(this, HostActivity.class);
+        intent.putExtra("activity",getIntent().getStringExtra("activity"));
         startActivity(intent);
 
     }
@@ -38,7 +39,10 @@ public class SelectActivity extends AppCompatActivity {
             if (result.getContents() == null) {
                 Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show();
             } else {
+                if(getIntent().getStringExtra("activity").equals("Common"))
                 SuperSocket.forActivityResult(result.getContents(), new Intent(this, CommonDisplayActivity.class), this);
+                else if(getIntent().getStringExtra("activity").equals("wifi"))
+                    SuperSocket.forActivityResult(result.getContents(), new Intent(this, WirelessActivity.class), this);
             }
         } else { // This is important, otherwise the result will not be passed to the fragment super.onActivityResult(requestCode, resultCode, data);
         } }

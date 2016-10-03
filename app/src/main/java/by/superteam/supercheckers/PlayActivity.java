@@ -15,6 +15,7 @@ public class PlayActivity extends AppCompatActivity {
 
     public void commonDisplay(View v) {
         Intent intent = new Intent(this, SelectActivity.class);
+        intent.putExtra("activity","Common");
         startActivity(intent);
 
     }
@@ -22,5 +23,11 @@ public class PlayActivity extends AppCompatActivity {
     public void oneDevice(View v) {
         Intent intent = new Intent(this, InGameMode2And3Activity.class);
         startActivity(intent);
+    }
+    public void wireless(View v) {
+        Intent intent = new Intent(this, SelectActivity.class);
+        intent.putExtra("activity","wifi");
+        startActivity(intent);
+
     }
 }
