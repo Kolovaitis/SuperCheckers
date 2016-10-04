@@ -171,9 +171,9 @@ public class InGameMode2And3Activity extends AppCompatActivity {
         так же когда нам прилетают row и column нужно на этом устройстве тут же вызывать onEnemyClick(row,column)   --------------------------------------------------------------------------
          */
         try {
-            SuperSocket.send(new int[]{row, column});
-        } catch (IOException e) {
-            e.printStackTrace();
+         SuperSocket.send(new int[]{row, column});
+        } catch (Exception e) {
+
         }
         if (progress == 1) {
             if(yourColor!=2) {
