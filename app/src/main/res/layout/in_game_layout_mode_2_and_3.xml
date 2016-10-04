@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@mipmap/main_menu_background">
 
 
     <Button
@@ -10,11 +11,12 @@
         android:text="menu"
         android:id="@+id/button9"
         android:layout_gravity="center_horizontal"
-        android:onClick="test" />
+        android:onClick="test"
+        android:background="@mipmap/background_button" />
 
     <TableLayout
-        android:layout_width="360dp"
-        android:layout_height="360dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:weightSum="8"
         android:id="@+id/board">
