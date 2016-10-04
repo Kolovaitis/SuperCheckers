@@ -3,10 +3,14 @@ package by.superteam.supercheckers;
 import android.graphics.drawable.AnimationDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.Toast;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Random;
 
 public class WirelessActivity extends AppCompatActivity {
@@ -17,6 +21,7 @@ public class WirelessActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.chooser);
+        color="";
         if (user.equals("host")) {
             boolean blackOrWhite = (new Random()).nextBoolean();
             if (blackOrWhite) {
@@ -64,6 +69,7 @@ public class WirelessActivity extends AppCompatActivity {
 frameAnimation.setOneShot(true);
         // Start the animation (looped playback by default).
         frameAnimation.start();
+
     }
 
     public static void forclient(String message) {
@@ -83,6 +89,10 @@ frameAnimation.setOneShot(true);
             // Start the animation (looped playback by default).
             frameAnimation.start();*/
         }
+
+    }
+    public void touchToStart(View v){
+        setContentView(R.layout.activity_wireless);
     }
 }
 
