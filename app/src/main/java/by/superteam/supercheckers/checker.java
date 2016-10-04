@@ -1,9 +1,6 @@
 package by.superteam.supercheckers;
 
-/**
- * Created by pasha on 01.10.2016.
- */
-public class Checker {
+class Checker {
     private int column;
     private int row;
     private boolean isWhite;

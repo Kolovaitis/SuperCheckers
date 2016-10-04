@@ -7,7 +7,7 @@ import android.widget.Toast;
 /**
  * Created by pasha on 01.10.2016.
  */
-public class Square {
+class Square {
     private boolean isWhite;
     private int column;
     private int row;

@@ -7,32 +7,36 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="by.superteam.supercheckers.PlayActivity">
+    tools:context="by.superteam.supercheckers.PlayActivity"
+    android:background="@mipmap/main_menu_background">
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Common display mode"
         android:id="@+id/button5"
         android:layout_above="@+id/button6"
         android:layout_centerHorizontal="true"
-        android:onClick="commonDisplay" />
+        android:onClick="commonDisplay"
+        android:background="@mipmap/background_button" />
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="2 players - 1 device"
         android:id="@+id/button6"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        android:onClick="oneDevice" />
+        android:onClick="oneDevice"
+        android:background="@mipmap/background_button" />
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="2 players separately"
         android:id="@+id/button7"
         android:layout_below="@+id/button6"
         android:layout_centerHorizontal="true"
-        android:onClick="wireless" />
+        android:onClick="wireless"
+        android:background="@mipmap/background_button" />
 </RelativeLayout>
