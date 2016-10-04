@@ -208,7 +208,7 @@ startChecking();
     public static void onTextGotted(final String text){
         //место для метода при получении текста
         CommonDisplayActivity.width2string = text;
-        if(text.length()==5&&!(text.charAt(0)=='w')){
+        if(text.length()==5&&!(text.charAt(0)=='w'&&!(text.charAt(0)=='b'))){
 InGameMode2And3Activity.activity.runOnUiThread(new Runnable() {
     @Override
     public void run() {
