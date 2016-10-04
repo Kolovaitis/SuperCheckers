@@ -44,28 +44,38 @@ public class CommonDisplayActivity extends AppCompatActivity {
         if(a.equals("1")){
             isHost=true;
         }
-
         Point size = new Point();
         WindowManager w = getWindowManager();
-
-
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
             w.getDefaultDisplay().getSize(size);
+
+            width = size.x;
+            height = size.y;
+        } else {
+            Display d = w.getDefaultDisplay();
+            width = d.getWidth();
+            height = d.getHeight();}
+
+
+
+
+
 
 
 
         String widthstring33 = Integer.toString(width);
-
+        try {
+            SuperSocket.startChecking();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         try {
             SuperSocket.send(widthstring33);
         } catch (IOException e) {
             e.printStackTrace();
         }
         boolean isWhite = true;
-        try {
-            SuperSocket.startChecking();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
         while(width2string==null){
             try {
                 Thread.sleep(10);
@@ -74,8 +84,7 @@ public class CommonDisplayActivity extends AppCompatActivity {
             }
         }
         int width2 = Integer.parseInt(width2string);
-        width = board.getWidth();
-        height = board.getHeight();
+
         if (width < width2) {
             board.setLayoutParams(new RelativeLayout.LayoutParams(width, height));
         } else {
@@ -84,7 +93,7 @@ public class CommonDisplayActivity extends AppCompatActivity {
 
         board = (TableLayout) findViewById(R.id.board);
 
-        board.setLayoutParams(new RelativeLayout.LayoutParams(width, height));
+
 
 
         for (int i = 0; i < 8; i++) {
@@ -125,7 +134,7 @@ public class CommonDisplayActivity extends AppCompatActivity {
                 if(isHost){
                     squares[i][j].drawSquare2();}
                 else{
-                    squares[i][j].drawSquare();
+                    squares[i][j].drawSquare3();
                 }
             }
         }
