@@ -205,8 +205,16 @@ startChecking();
         });
         thread.start();
     }
-    public static void onTextGotted(String text){
+    public static void onTextGotted(final String text){
         //место для метода при получении текста
         CommonDisplayActivity.width2string = text;
+        if(text.length()==5&&!(text.charAt(0)=='w')){
+InGameMode2And3Activity.activity.runOnUiThread(new Runnable() {
+    @Override
+    public void run() {
+        InGameMode2And3Activity.onEnemyClick(Integer.parseInt(text.charAt(0)+""),Integer.parseInt(text.charAt(4)+""));
+    }
+});
+        }
     }
 }

@@ -1,5 +1,6 @@
 package by.superteam.supercheckers;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.SystemClock;
@@ -10,6 +11,7 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.Toast;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.concurrent.SynchronousQueue;
 
@@ -17,6 +19,7 @@ import java.util.concurrent.SynchronousQueue;
  * Created by pasha on 01.10.2016.
  */
 public class InGameMode2And3Activity extends AppCompatActivity {
+    static Activity activity;
     static boolean searching = false;
     static boolean searching2 = false;
     static int blackcounter = 0;
@@ -43,7 +46,7 @@ public class InGameMode2And3Activity extends AppCompatActivity {
     static int yourColor=0;
 
 
-    public void draw() {
+    public static void draw() {
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 squares[i][j].drawSquare();
@@ -54,7 +57,7 @@ public class InGameMode2And3Activity extends AppCompatActivity {
         }
     }
 
-    public void clean() {
+    public static void clean() {
         purple = null;
         redrb = null;
         redlb = null;
@@ -70,7 +73,7 @@ public class InGameMode2And3Activity extends AppCompatActivity {
         canChange = true;
     }
 
-    public void clean2() {
+    public static void clean2() {
         purple = null;
         redrb = null;
         redlb = null;
@@ -85,7 +88,7 @@ public class InGameMode2And3Activity extends AppCompatActivity {
         canChange = true;
     }
 
-    public void clean3() {
+    public static void clean3() {
         purple = null;
         redrb = null;
         redlb = null;
@@ -95,7 +98,7 @@ public class InGameMode2And3Activity extends AppCompatActivity {
         veryDeadGreen = new ArrayList<Square>();
     }
 
-    public void clean4() {
+    public static void clean4() {
         purple = null;
         redrb = null;
         redlb = null;
@@ -109,7 +112,7 @@ public class InGameMode2And3Activity extends AppCompatActivity {
         canChange=true;
     }
 
-    public void setVeryDeadGreen(int row, int column, boolean isWhite) {
+    public static void setVeryDeadGreen(int row, int column, boolean isWhite) {
         Square redrb2 = redrb;
         Square redlb2 = redlb;
         Square redrt2 = redrt;
@@ -167,6 +170,11 @@ public class InGameMode2And3Activity extends AppCompatActivity {
         в этот момент(в начале мотода onSquareClick на этот устройстве) у соперника должен вызываться метод onEnemyClick(row,column)   -------------------------------------------------------
         так же когда нам прилетают row и column нужно на этом устройстве тут же вызывать onEnemyClick(row,column)   --------------------------------------------------------------------------
          */
+        try {
+            SuperSocket.send(new int[]{row, column});
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         if (progress == 1) {
             if(yourColor!=2) {
                 canChange = true;
@@ -204,7 +212,7 @@ public class InGameMode2And3Activity extends AppCompatActivity {
     }
 
 
-    public void onEnemyClick(int row, int column){
+    public static void onEnemyClick(int row, int column){
         if (progress == 1) {
             if(yourColor==2) {
                 canChange = true;
@@ -234,7 +242,7 @@ public class InGameMode2And3Activity extends AppCompatActivity {
     }
 
 
-    public void ifprogress1(int row, int column) {
+    public static void ifprogress1(int row, int column) {
 
         if (necessarySquares.size() > 0 && necessarySquares.indexOf(squares[row][column]) == -1 && searching == false && searching2 == false) {
             progress = 1;
@@ -552,7 +560,7 @@ public class InGameMode2And3Activity extends AppCompatActivity {
         }
     }
 
-    public void ifprogress2(int row, int column) {
+    public static void ifprogress2(int row, int column) {
         if (row == purple.getRow() && column == purple.getColumn() && canChange) {
             draw();
             clean2();
@@ -679,7 +687,7 @@ public class InGameMode2And3Activity extends AppCompatActivity {
         }
     }
 
-    public void ifprogress4(int row, int column) {
+    public static void ifprogress4(int row, int column) {
         if (necessarySquares.size() > 0 && necessarySquares.indexOf(squares[row][column]) == -1 && searching == false && searching2 == false) {
             progress = 4;
         } else {
@@ -942,7 +950,7 @@ public class InGameMode2And3Activity extends AppCompatActivity {
     }
 
 
-    public void ifprogress5(int row, int column) {
+    public static void ifprogress5(int row, int column) {
         if (row == purple.getRow() && column == purple.getColumn() && canChange) {
             draw();
             clean2();
@@ -1070,7 +1078,7 @@ public class InGameMode2And3Activity extends AppCompatActivity {
     }
 
 
-    public void finder(boolean isWhite) {
+    public static void finder(boolean isWhite) {
 
         searching = true;
         ArrayList<Checker> temp;
@@ -1100,18 +1108,13 @@ public class InGameMode2And3Activity extends AppCompatActivity {
         }
 
         if (green.size() == 0 && deadGreenlb.size() == 0 && deadGreenlt.size() == 0 && deadGreenrb.size() == 0 && deadGreenrt.size() == 0) {
-            if (!isWhite) {
-                Toast.makeText(this, "White win!", Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(this, "Black win!", Toast.LENGTH_SHORT).show();
-            }
         }
         clean2();
         draw();
         searching = false;
     }
 
-    public void highlight() {
+    public static void highlight() {
         draw();
         if (purple != null)
             if (purple.getChecker() != null)
@@ -1159,6 +1162,7 @@ public class InGameMode2And3Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.in_game_layout_mode_2_and_3);
+        activity=this;
         boolean isWhite = true;
         board = (TableLayout) findViewById(R.id.board);
         Intent intent=getIntent();

@@ -1,5 +1,6 @@
 package by.superteam.supercheckers;
 
+import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -99,7 +100,12 @@ frameAnimation.setOneShot(true);
 
     }
     public void touchToStart(View v){
-        setContentView(R.layout.activity_wireless);
+        Intent intent=new Intent(this,InGameMode2And3Activity.class);
+        if(color.equals("white"))
+        intent.putExtra("color",1);
+        if(color.equals("black"))
+            intent.putExtra("color",2);
+        startActivity(intent);
     }
 }
 
