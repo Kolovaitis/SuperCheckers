@@ -3,7 +3,9 @@ package by.superteam.supercheckers;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.Toast;
@@ -1135,6 +1137,11 @@ public class InGameMode2And3Activity extends AppCompatActivity {
             }
         }
         draw();
+
+
+        /*TableLayout.LayoutParams params = new TableLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, TableLayout.LayoutParams.WRAP_CONTENT);
+        Log.d("Debug", Integer.toString(params.height) + "" + Integer.toString(params.width));
+        board.setLayoutParams(params);*/
     }
 
     public void test(View v) {
