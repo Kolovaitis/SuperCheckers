@@ -16,7 +16,14 @@ import java.util.Random;
 public class WirelessActivity extends AppCompatActivity {
     static String user = "";
     static String color = "";
-
+    @Override
+    public void onBackPressed() {
+        try {
+            SuperSocket.socket.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

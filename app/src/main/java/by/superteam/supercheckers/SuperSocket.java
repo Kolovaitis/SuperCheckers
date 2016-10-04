@@ -91,7 +91,7 @@ startChecking();
                     System.out.println("Yes! I just got hold of the program.");
 
 
-
+                    intent.putExtra("button", "0");
                     context.startActivity(intent);
 
                     try {
@@ -177,23 +177,36 @@ startChecking();
     }
     public static void startChecking() throws IOException {
         InputStream sin = socket.getInputStream();
-        DataInputStream in = new DataInputStream(sin);
-        while(true) {
-            String line = in.readUTF(); // ожидаем пока клиент пришлет строку текста.
-            System.out.println("The dumb client just sent me this line : " + line);
-            System.out.println("I'm sending it back...");
-            onTextGotted(line);
-            System.out.println("Waiting for the next line...");
-            System.out.println();
-            if(line.equals("white")) {
-                WirelessActivity.forclient(line);
+        final DataInputStream in = new DataInputStream(sin);
+        Thread thread=new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while(true) {
+                    String line = null; // ожидаем пока клиент пришлет строку текста.
+                    try {
+                        line = in.readUTF();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    System.out.println("The dumb client just sent me this line : " + line);
+                    System.out.println("I'm sending it back...");
+                    onTextGotted(line);
+                    System.out.println("Waiting for the next line...");
+                    System.out.println();
+
+                    if(line.equals("white")) {
+                        WirelessActivity.forclient(line);
+                    }
+                    if(line.equals("black")) {
+                        WirelessActivity.forclient(line);
+                    }
+                }
             }
-            if(line.equals("black")) {
-                WirelessActivity.forclient(line);
-            }
-        }
+        });
+        thread.start();
     }
     public static void onTextGotted(String text){
         //место для метода при получении текста
+        CommonDisplayActivity.width2string = text;
     }
 }

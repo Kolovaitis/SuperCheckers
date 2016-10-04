@@ -24,8 +24,11 @@ public class SelectActivity extends AppCompatActivity {
         SuperSocket.conectAsClient(this);
     }
     public void host(View v) {
+
         Intent intent = new Intent(this, HostActivity.class);
         intent.putExtra("activity",getIntent().getStringExtra("activity"));
+
+        intent.putExtra("button", "1");
         startActivity(intent);
 
     }
