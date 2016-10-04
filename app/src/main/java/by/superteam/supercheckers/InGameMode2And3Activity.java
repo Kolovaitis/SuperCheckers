@@ -1,11 +1,11 @@
 package by.superteam.supercheckers;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.Toast;
@@ -40,6 +40,7 @@ public class InGameMode2And3Activity extends AppCompatActivity {
     static int lastDirection;
     static boolean canChange = true;
     static ArrayList<Square> necessarySquares = new ArrayList<Square>();
+    static int yourColor=0;
 
 
     public void draw() {
@@ -161,19 +162,70 @@ public class InGameMode2And3Activity extends AppCompatActivity {
     public void onSquareClick(View v) {
         int column = ((TableRow) v.getParent()).indexOfChild(v);
         int row = ((TableLayout) ((TableRow) v.getParent()).getParent()).indexOfChild((TableRow) v.getParent());
+        /*
+        тут нужно отправить сопернику row и column и передать их в onEnemyClick   ------------------------------------------------------------------------------------------------------------
+        в этот момент(в начале мотода onSquareClick на этот устройстве) у соперника должен вызываться метод onEnemyClick(row,column)   -------------------------------------------------------
+        так же когда нам прилетают row и column нужно на этом устройстве тут же вызывать onEnemyClick(row,column)   --------------------------------------------------------------------------
+         */
         if (progress == 1) {
-            canChange = true;
-            ifprogress1(row, column);
+            if(yourColor!=2) {
+                canChange = true;
+                ifprogress1(row, column);
+            }else{
+                Toast.makeText(this,"не твой ход",Toast.LENGTH_SHORT).show();
+            }
         } else {
             if (progress == 2) {
-                ifprogress2(row, column);
+                if(yourColor!=2) {
+                    ifprogress2(row, column);
+                }else{
+                    Toast.makeText(this,"не твой ход",Toast.LENGTH_SHORT).show();
+                }
             } else {
                 if (progress == 4) {
-                    canChange = true;
-                    ifprogress4(row, column);
+                    if(yourColor!=1) {
+                        canChange = true;
+                        ifprogress4(row, column);
+                    }else{
+                        Toast.makeText(this,"не твой ход",Toast.LENGTH_SHORT).show();
+                    }
                 } else {
                     if (progress == 5) {
-                        ifprogress5(row, column);
+                        if(yourColor!=1) {
+                            ifprogress5(row, column);
+                        }else{
+                            Toast.makeText(this,"не твой ход",Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }
+            }
+
+        }
+    }
+
+
+    public void onEnemyClick(int row, int column){
+        if (progress == 1) {
+            if(yourColor==2) {
+                canChange = true;
+                ifprogress1(row, column);
+            }
+        } else {
+            if (progress == 2) {
+                if(yourColor==2) {
+                    ifprogress2(row, column);
+                }
+            } else {
+                if (progress == 4) {
+                    if(yourColor==1) {
+                        canChange = true;
+                        ifprogress4(row, column);
+                    }
+                } else {
+                    if (progress == 5) {
+                        if(yourColor==1) {
+                            ifprogress5(row, column);
+                        }
                     }
                 }
             }
@@ -1109,6 +1161,12 @@ public class InGameMode2And3Activity extends AppCompatActivity {
         setContentView(R.layout.in_game_layout_mode_2_and_3);
         boolean isWhite = true;
         board = (TableLayout) findViewById(R.id.board);
+        Intent intent=getIntent();
+        yourColor=intent.getIntExtra("color",0);
+        // если игра идёт на 1 устройстве, значение(yourColor) должно быть 0   ---------------------------------------------------------------------------------------------------------------
+        // если на разных, то 1 для белого и 2 для чёрного   ---------------------------------------------------------------------------------------------------------------------------------
+
+
 
 
         for (int i = 0; i < 8; i++) {
@@ -1137,11 +1195,6 @@ public class InGameMode2And3Activity extends AppCompatActivity {
             }
         }
         draw();
-
-
-        /*TableLayout.LayoutParams params = new TableLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, TableLayout.LayoutParams.WRAP_CONTENT);
-        Log.d("Debug", Integer.toString(params.height) + "" + Integer.toString(params.width));
-        board.setLayoutParams(params);*/
     }
 
     public void test(View v) {

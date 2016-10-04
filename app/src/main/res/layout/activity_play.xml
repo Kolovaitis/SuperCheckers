@@ -31,11 +31,12 @@
         android:background="@mipmap/background_button" />
 
     <Button
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="2 players separately"
         android:id="@+id/button7"
         android:layout_below="@+id/button6"
         android:layout_centerHorizontal="true"
+        android:onClick="wireless"
         android:background="@mipmap/background_button" />
 </RelativeLayout>

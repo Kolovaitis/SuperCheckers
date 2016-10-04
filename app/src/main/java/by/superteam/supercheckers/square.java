@@ -97,6 +97,47 @@ class Square {
         }
     }
 
+    public void drawSquare2() {
+        ImageView img = (ImageView) ((TableRow) CommonDisplayActivity.board.getChildAt(this.row)).getChildAt(this.column);
+        if (this.isWhite) {
+            if (this.checker != null) {
+                if (this.checker.isWhite()) {
+                    if (this.checker.isKing()) {
+                        img.setBackgroundResource(R.mipmap.black_king_on_white);
+                    } else {
+                        img.setBackgroundResource(R.mipmap.black_on_white);
+                    }
+                } else {
+                    if (this.checker.isKing()) {
+                        img.setBackgroundResource(R.mipmap.white_king_on_white);
+                    } else {
+                        img.setBackgroundResource(R.mipmap.white_on_white);
+                    }
+                }
+            } else {
+                img.setBackgroundResource(R.mipmap.white);
+            }
+        } else {
+            if (this.checker != null) {
+                if (this.checker.isWhite()) {
+                    if (this.checker.isKing()) {
+                        img.setBackgroundResource(R.mipmap.black_king_on_black);
+                    } else {
+                        img.setBackgroundResource(R.mipmap.black_on_black);
+                    }
+                } else {
+                    if (this.checker.isKing()) {
+                        img.setBackgroundResource(R.mipmap.white_king_on_black);
+                    } else {
+                        img.setBackgroundResource(R.mipmap.white_on_black);
+                    }
+                }
+            } else {
+                img.setBackgroundResource(R.mipmap.black);
+            }
+        }
+    }
+
     public void highlight() {
         ImageView img = (ImageView) ((TableRow) InGameMode2And3Activity.board.getChildAt(this.row)).getChildAt(this.column);
         if (this.checker == null) {

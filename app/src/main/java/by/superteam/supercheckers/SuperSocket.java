@@ -69,13 +69,14 @@ public class SuperSocket {
                         System.out.println();
 
                         context.startActivity(intent);
-
+startChecking();
                     } catch(Exception x) { x.printStackTrace();
                     }
                 }})).start();
         } catch (WriterException e) {
             e.printStackTrace();
         }
+
     }
     public static void forActivityResult(String result, final Intent intent, final Context context){
         final String address = result; // это IP-адрес компьютера, где исполняется наша серверная программа.
@@ -90,8 +91,14 @@ public class SuperSocket {
                     System.out.println("Yes! I just got hold of the program.");
 
 
-
+                    intent.putExtra("button", "0");
                     context.startActivity(intent);
+
+                    try {
+                        startChecking();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
 
                 } catch (UnknownHostException e) {
                     e.printStackTrace();
@@ -156,19 +163,50 @@ public class SuperSocket {
         out.writeUTF(mas[0]+"---"+mas[1]);
         out.flush();
     }
+    public static void send(String mas) throws IOException {
+        // Берем входной и выходной потоки сокета, теперь можем получать и отсылать данные клиенту.
+
+        OutputStream sout = socket.getOutputStream();
+
+        // Конвертируем потоки в другой тип, чтоб легче обрабатывать текстовые сообщения.
+
+        DataOutputStream out = new DataOutputStream(sout);
+        out.writeUTF(mas);
+        out.flush();
+
+    }
     public static void startChecking() throws IOException {
         InputStream sin = socket.getInputStream();
-        DataInputStream in = new DataInputStream(sin);
-        while(true) {
-            String line = in.readUTF(); // ожидаем пока клиент пришлет строку текста.
-            System.out.println("The dumb client just sent me this line : " + line);
-            System.out.println("I'm sending it back...");
-            onTextGotted(line);
-            System.out.println("Waiting for the next line...");
-            System.out.println();
-        }
+        final DataInputStream in = new DataInputStream(sin);
+        Thread thread=new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while(true) {
+                    String line = null; // ожидаем пока клиент пришлет строку текста.
+                    try {
+                        line = in.readUTF();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    System.out.println("The dumb client just sent me this line : " + line);
+                    System.out.println("I'm sending it back...");
+                    onTextGotted(line);
+                    System.out.println("Waiting for the next line...");
+                    System.out.println();
+
+                    if(line.equals("white")) {
+                        WirelessActivity.forclient(line);
+                    }
+                    if(line.equals("black")) {
+                        WirelessActivity.forclient(line);
+                    }
+                }
+            }
+        });
+        thread.start();
     }
     public static void onTextGotted(String text){
         //место для метода при получении текста
+        CommonDisplayActivity.width2string = text;
     }
 }
