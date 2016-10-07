@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Switch
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:text="New Switch"
+        android:id="@+id/switch1"
+        android:textOn="Applyed"
+        android:textOff="Apply"
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="3dp" />
+</LinearLayout>

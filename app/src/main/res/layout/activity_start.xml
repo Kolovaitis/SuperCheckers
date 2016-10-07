@@ -55,7 +55,8 @@
             android:layout_below="@+id/button"
             android:layout_centerHorizontal="true"
             android:layout_gravity="center_horizontal"
-            android:background="@mipmap/background_button" />
+            android:background="@mipmap/background_button"
+            android:onClick="shop" />
 
         <Button
             android:layout_width="match_parent"

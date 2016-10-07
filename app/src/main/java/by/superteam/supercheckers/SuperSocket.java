@@ -39,7 +39,8 @@ public class SuperSocket {
     public final static int HEIGHT = 600;
     final static int port = 6666;
     static GoogleApiClient client;
-    public static void conectAsClient(Context context){
+
+    public static void conectAsClient(Context context) {
         IntentIntegrator integrator = new IntentIntegrator((Activity) context);
         integrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE_TYPES);
         integrator.setPrompt("Scan QR code");
@@ -51,13 +52,14 @@ public class SuperSocket {
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(context).addApi(AppIndex.API).build();
     }
-    public static void host(final Intent intent, final Context context,ImageView forQRcode){
+
+    public static void host(final Intent intent, final Context context, ImageView forQRcode) {
         // случайный порт (может быть любое число от 1025 до 65535)
         try {
-            forQRcode.setImageBitmap(encodeAsBitmap(getIpAddress())); (new Thread(new Runnable() {
+            forQRcode.setImageBitmap(encodeAsBitmap(getIpAddress()));
+            (new Thread(new Runnable() {
                 @Override
                 public void run() {
-
 
 
                     try {
@@ -69,16 +71,19 @@ public class SuperSocket {
                         System.out.println();
 
                         context.startActivity(intent);
-startChecking();
-                    } catch(Exception x) { x.printStackTrace();
+                        startChecking();
+                    } catch (Exception x) {
+                        x.printStackTrace();
                     }
-                }})).start();
+                }
+            })).start();
         } catch (WriterException e) {
             e.printStackTrace();
         }
 
     }
-    public static void forActivityResult(String result, final Intent intent, final Context context){
+
+    public static void forActivityResult(String result, final Intent intent, final Context context) {
         final String address = result; // это IP-адрес компьютера, где исполняется наша серверная программа.
         // Здесь указан адрес того самого компьютера где будет исполняться и клиент.
         (new Thread(new Runnable() {
@@ -114,22 +119,23 @@ startChecking();
 
     public static String getIpAddress() {
         try {
-            for (Enumeration en = NetworkInterface.getNetworkInterfaces(); en.hasMoreElements();) {
+            for (Enumeration en = NetworkInterface.getNetworkInterfaces(); en.hasMoreElements(); ) {
                 NetworkInterface intf = (NetworkInterface) en.nextElement();
-                for (Enumeration enumIpAddr = intf.getInetAddresses(); enumIpAddr.hasMoreElements();) {
+                for (Enumeration enumIpAddr = intf.getInetAddresses(); enumIpAddr.hasMoreElements(); ) {
                     InetAddress inetAddress = (InetAddress) enumIpAddr.nextElement();
-                    if (!inetAddress.isLoopbackAddress()&&inetAddress instanceof Inet4Address) {
-                        String ipAddress=inetAddress.getHostAddress().toString();
-                        System.out.println("IP address"+ipAddress);
+                    if (!inetAddress.isLoopbackAddress() && inetAddress instanceof Inet4Address) {
+                        String ipAddress = inetAddress.getHostAddress().toString();
+                        System.out.println("IP address" + ipAddress);
                         return ipAddress;
                     }
                 }
             }
         } catch (SocketException ex) {
-            System.out.println("Socket exception in GetIP Address of Utilities"+ ex.toString());
+            System.out.println("Socket exception in GetIP Address of Utilities" + ex.toString());
         }
         return null;
     }
+
     static Bitmap encodeAsBitmap(String str) throws WriterException {
         BitMatrix result;
         try {
@@ -152,7 +158,8 @@ startChecking();
         bitmap.setPixels(pixels, 0, WIDTH, 0, 0, w, h);
         return bitmap;
     }
-    public static void send(int []mas) throws IOException {
+
+    public static void send(int[] mas) throws IOException {
         // Берем входной и выходной потоки сокета, теперь можем получать и отсылать данные клиенту.
 
         OutputStream sout = socket.getOutputStream();
@@ -160,9 +167,10 @@ startChecking();
         // Конвертируем потоки в другой тип, чтоб легче обрабатывать текстовые сообщения.
 
         DataOutputStream out = new DataOutputStream(sout);
-        out.writeUTF(mas[0]+"---"+mas[1]);
+        out.writeUTF(mas[0] + "---" + mas[1]);
         out.flush();
     }
+
     public static void send(String mas) throws IOException {
         // Берем входной и выходной потоки сокета, теперь можем получать и отсылать данные клиенту.
 
@@ -175,13 +183,14 @@ startChecking();
         out.flush();
 
     }
+
     public static void startChecking() throws IOException {
         InputStream sin = socket.getInputStream();
         final DataInputStream in = new DataInputStream(sin);
-        Thread thread=new Thread(new Runnable() {
+        Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
-                while(true) {
+                while (true) {
                     String line = null; // ожидаем пока клиент пришлет строку текста.
                     try {
                         line = in.readUTF();
@@ -194,10 +203,10 @@ startChecking();
                     System.out.println("Waiting for the next line...");
                     System.out.println();
 
-                    if(line.equals("white")) {
+                    if (line.equals("white")) {
                         WirelessActivity.forclient(line);
                     }
-                    if(line.equals("black")) {
+                    if (line.equals("black")) {
                         WirelessActivity.forclient(line);
                     }
                 }
@@ -205,16 +214,17 @@ startChecking();
         });
         thread.start();
     }
-    public static void onTextGotted(final String text){
+
+    public static void onTextGotted(final String text) {
         //место для метода при получении текста
         CommonDisplayActivity.width2string = text;
-        if(text.length()==5&&!(text.charAt(0)=='w')&&!(text.charAt(0)=='b')){
-InGameMode2And3Activity.activity.runOnUiThread(new Runnable() {
-    @Override
-    public void run() {
-        InGameMode2And3Activity.onEnemyClick(Integer.parseInt(text.charAt(0)+""),Integer.parseInt(text.charAt(4)+""));
-    }
-});
+        if (text.length() == 5 && !(text.charAt(0) == 'w') && !(text.charAt(0) == 'b')) {
+            InGameMode2And3Activity.activity.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    InGameMode2And3Activity.onEnemyClick(Integer.parseInt(text.charAt(0) + ""), Integer.parseInt(text.charAt(4) + ""));
+                }
+            });
         }
     }
 }

@@ -1,5 +1,6 @@
 package by.superteam.supercheckers;
 
+import android.graphics.BitmapFactory;
 import android.widget.ImageView;
 import android.widget.TableRow;
 
@@ -58,40 +59,42 @@ public class Square {
     public void drawSquare() {
         ImageView img = (ImageView) ((TableRow) InGameMode2And3Activity.board.getChildAt(this.row)).getChildAt(this.column);
         if (this.isWhite) {
+            img.setBackgroundResource(R.drawable.white);
             if (this.checker != null) {
                 if (this.checker.isWhite()) {
                     if (this.checker.isKing()) {
-                        img.setBackgroundResource(R.mipmap.white_king_on_white);
+                        img.setImageResource(R.mipmap.white_king);
                     } else {
-                        img.setBackgroundResource(R.mipmap.white_on_white);
+                        img.setImageResource(R.mipmap.white_checker);
                     }
                 } else {
                     if (this.checker.isKing()) {
-                        img.setBackgroundResource(R.mipmap.black_king_on_white);
+                        img.setImageResource(R.mipmap.black_king);
                     } else {
-                        img.setBackgroundResource(R.mipmap.black_on_white);
+                        img.setImageResource(R.mipmap.black_checker);
                     }
                 }
-            } else {
-                img.setBackgroundResource(R.mipmap.white);
+            }else {
+                img.setImageResource(0);
             }
         } else {
+            img.setBackgroundResource(R.drawable.black);
             if (this.checker != null) {
                 if (this.checker.isWhite()) {
                     if (this.checker.isKing()) {
-                        img.setBackgroundResource(R.mipmap.white_king_on_black);
+                        img.setImageResource(R.mipmap.white_king);
                     } else {
-                        img.setBackgroundResource(R.mipmap.white_on_black);
+                        img.setImageResource(R.mipmap.white_checker);
                     }
                 } else {
                     if (this.checker.isKing()) {
-                        img.setBackgroundResource(R.mipmap.black_king_on_black);
+                        img.setImageResource(R.mipmap.black_king);
                     } else {
-                        img.setBackgroundResource(R.mipmap.black_on_black);
+                        img.setImageResource(R.mipmap.black_checker);
                     }
                 }
-            } else {
-                img.setBackgroundResource(R.mipmap.black);
+            }else {
+                img.setImageResource(0);
             }
         }
     }
@@ -99,80 +102,85 @@ public class Square {
     public void drawSquare2() {
         ImageView img = (ImageView) ((TableRow) CommonDisplayActivity.board.getChildAt(this.row)).getChildAt(this.column);
         if (this.isWhite) {
+            img.setBackgroundResource(R.drawable.white);
             if (this.checker != null) {
                 if (this.checker.isWhite()) {
                     if (this.checker.isKing()) {
-                        img.setBackgroundResource(R.mipmap.black_king_on_white);
+                        img.setImageResource(R.mipmap.black_king);
                     } else {
-                        img.setBackgroundResource(R.mipmap.black_on_white);
+                        img.setBackgroundResource(R.mipmap.black_checker);
                     }
                 } else {
                     if (this.checker.isKing()) {
-                        img.setBackgroundResource(R.mipmap.white_king_on_white);
+                        img.setImageResource(R.mipmap.white_king);
                     } else {
-                        img.setBackgroundResource(R.mipmap.white_on_white);
+                        img.setImageResource(R.mipmap.white_checker);
                     }
                 }
-            } else {
-                img.setBackgroundResource(R.mipmap.white);
+            }else {
+                img.setImageResource(0);
             }
         } else {
+            img.setBackgroundResource(R.drawable.black);
             if (this.checker != null) {
                 if (this.checker.isWhite()) {
                     if (this.checker.isKing()) {
-                        img.setBackgroundResource(R.mipmap.black_king_on_black);
+                        img.setImageResource(R.mipmap.black_king);
                     } else {
-                        img.setBackgroundResource(R.mipmap.black_on_black);
+                        img.setImageResource(R.mipmap.black_checker);
                     }
                 } else {
                     if (this.checker.isKing()) {
-                        img.setBackgroundResource(R.mipmap.white_king_on_black);
+                        img.setImageResource(R.mipmap.white_king);
                     } else {
-                        img.setBackgroundResource(R.mipmap.white_on_black);
+                        img.setImageResource(R.mipmap.white_checker);
                     }
                 }
-            } else {
-                img.setBackgroundResource(R.mipmap.black);
+            }else {
+                img.setImageResource(0);
             }
         }
     }
+
     public void drawSquare3() {
         ImageView img = (ImageView) ((TableRow) CommonDisplayActivity.board.getChildAt(this.row)).getChildAt(this.column);
         if (this.isWhite) {
+            img.setBackgroundResource(R.drawable.white);
             if (this.checker != null) {
                 if (this.checker.isWhite()) {
                     if (this.checker.isKing()) {
-                        img.setBackgroundResource(R.mipmap.white_king_on_white);
+                        img.setImageResource(R.mipmap.white_king);
                     } else {
-                        img.setBackgroundResource(R.mipmap.white_on_white);
+                        img.setImageResource(R.mipmap.white_checker);
                     }
                 } else {
                     if (this.checker.isKing()) {
-                        img.setBackgroundResource(R.mipmap.black_king_on_white);
+                        img.setImageResource(R.mipmap.black_king);
                     } else {
-                        img.setBackgroundResource(R.mipmap.black_on_white);
+                        img.setImageResource(R.mipmap.black_checker);
                     }
                 }
-            } else {
-                img.setBackgroundResource(R.mipmap.white);
+            }else {
+                img.setImageResource(0);
             }
         } else {
+            img.setBackgroundResource(R.drawable.black);
             if (this.checker != null) {
                 if (this.checker.isWhite()) {
                     if (this.checker.isKing()) {
-                        img.setBackgroundResource(R.mipmap.white_king_on_black);
+                        img.setImageResource(R.mipmap.white_king);
                     } else {
-                        img.setBackgroundResource(R.mipmap.white_on_black);
+                        img.setImageResource(R.mipmap.white_checker);
                     }
                 } else {
                     if (this.checker.isKing()) {
-                        img.setBackgroundResource(R.mipmap.black_king_on_black);
+                        img.setImageResource(R.mipmap.black_king);
                     } else {
-                        img.setBackgroundResource(R.mipmap.black_on_black);
+                        img.setImageResource(R.mipmap.black_checker);
                     }
                 }
-            } else {
-                img.setBackgroundResource(R.mipmap.black);
+            }else {
+                img.setImageResource(0);
             }
         }
     }
@@ -180,56 +188,20 @@ public class Square {
     public void highlight() {
         ImageView img = (ImageView) ((TableRow) InGameMode2And3Activity.board.getChildAt(this.row)).getChildAt(this.column);
         if (this.checker == null) {
-            img.setBackgroundResource(R.mipmap.green);
+            img.setBackgroundResource(R.drawable.green);
         } else {
-            if (this.checker.isWhite()) {
-                if (this.checker.isKing()) {
-                    img.setBackgroundResource(R.mipmap.white_king_on_red);
-                } else {
-                    img.setBackgroundResource(R.mipmap.white_on_red);
-                }
-            } else {
-                if (this.checker.isKing()) {
-                    img.setBackgroundResource(R.mipmap.black_king_on_red);
-                } else {
-                    img.setBackgroundResource(R.mipmap.black_on_red);
-                }
-            }
+            img.setBackgroundResource(R.drawable.red);
         }
     }
 
     public void highlight2() {
         ImageView img = (ImageView) ((TableRow) InGameMode2And3Activity.board.getChildAt(this.row)).getChildAt(this.column);
-        if (this.checker.isWhite()) {
-            if (this.checker.isKing()) {
-                img.setBackgroundResource(R.mipmap.white_king_on_purple);
-            } else {
-                img.setBackgroundResource(R.mipmap.white_on_purple);
-            }
-        } else {
-            if (this.checker.isKing()) {
-                img.setBackgroundResource(R.mipmap.black_king_on_purple);
-            } else {
-                img.setBackgroundResource(R.mipmap.black_on_purple);
-            }
-        }
+        img.setBackgroundResource(R.drawable.purple);
     }
 
     public void highlight3(){
         ImageView img = (ImageView) ((TableRow) InGameMode2And3Activity.board.getChildAt(this.row)).getChildAt(this.column);
-        if (this.checker.isWhite()) {
-            if (this.checker.isKing()) {
-                img.setBackgroundResource(R.mipmap.white_king_on_green);
-            } else {
-                img.setBackgroundResource(R.mipmap.white_on_green);
-            }
-        } else {
-            if (this.checker.isKing()) {
-                img.setBackgroundResource(R.mipmap.black_king_on_green);
-            } else {
-                img.setBackgroundResource(R.mipmap.black_on_green);
-            }
-        }
+        img.setBackgroundResource(R.drawable.green);
     }
 
 }

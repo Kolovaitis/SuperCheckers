@@ -8,6 +8,7 @@ public class Checker {
     private int row;
     private boolean isWhite;
     private boolean isKing;
+    private int skinResourceId;
 
     public Checker(int row, int column, boolean isWhite) {
         this.column = column;

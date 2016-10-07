@@ -12,11 +12,13 @@ public class StartActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
     }
-    public void exit(View v){
-        finish();
-    }
     public void play(View v){
-        Intent intent =new Intent(this,PlayActivity.class);
+        Intent intent = new Intent(this,PlayActivity.class);
+        startActivity(intent);
+    }
+
+    public void shop(View v){
+        Intent intent = new Intent(this, Shop.class);
         startActivity(intent);
     }
 }
