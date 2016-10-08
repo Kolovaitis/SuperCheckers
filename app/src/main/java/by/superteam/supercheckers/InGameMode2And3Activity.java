@@ -2,12 +2,19 @@ package by.superteam.supercheckers;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.TranslateAnimation;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.Toast;
@@ -20,6 +27,7 @@ import java.util.concurrent.SynchronousQueue;
  * Created by pasha on 01.10.2016.
  */
 public class InGameMode2And3Activity extends AppCompatActivity {
+    static RelativeLayout relative;
     static Activity activity;
     static boolean searching = false;
     static boolean searching2 = false;
@@ -1168,6 +1176,7 @@ public class InGameMode2And3Activity extends AppCompatActivity {
         board = (TableLayout) findViewById(R.id.board);
         Intent intent=getIntent();
         yourColor=intent.getIntExtra("color",0);
+        relative=(RelativeLayout)findViewById(R.id.relative);
         // если игра идёт на 1 устройстве, значение(yourColor) должно быть 0   ---------------------------------------------------------------------------------------------------------------
         // если на разных, то 1 для белого и 2 для чёрного   ---------------------------------------------------------------------------------------------------------------------------------
 
@@ -1205,5 +1214,30 @@ public class InGameMode2And3Activity extends AppCompatActivity {
     public void test(View v) {
         Toast.makeText(this,"В разработке",Toast.LENGTH_SHORT).show();
     }
+    public void startanim(ImageView view,int deltX,int deltY){
+        ImageView imageView=new ImageView(InGameMode2And3Activity.activity);
+        imageView.setImageMatrix(view.getImageMatrix());
+        relative.addView(imageView,new ActionBar.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT));
 
+        Animation animation=new TranslateAnimation(view.getLeft(),deltX,view.getTop(),deltY);
+        animation.setDuration(1000);
+        animation.setRepeatCount(0);
+        animation.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                relative.removeAllViews();
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+        imageView.startAnimation(animation);
+    }
 }
