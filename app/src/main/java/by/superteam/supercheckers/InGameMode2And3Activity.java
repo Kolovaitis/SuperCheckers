@@ -1227,11 +1227,19 @@ public class InGameMode2And3Activity extends AppCompatActivity {
             }
         }
         draw();
+
+
     }
 
     public void test(View v) {
         Toast.makeText(this,"В разработке",Toast.LENGTH_SHORT).show();
     }
+
+
+    //все вызовы startanim
+    //startanim((ImageView) ((TableRow) InGameMode2And3Activity.board.getChildAt(purple.getRow())).getChildAt(purple.getColumn()),(ImageView) ((TableRow) InGameMode2And3Activity.board.getChildAt(squares[row][column].getRow())).getChildAt(squares[row][column].getColumn()));
+
+
     public static void startanim(ImageView view1,ImageView view2){
         System.out.println("--------------START----------------------");
         ImageView imageView=new ImageView(InGameMode2And3Activity.activity);
