@@ -1260,4 +1260,32 @@ public class InGameMode2And3Activity extends AppCompatActivity {
         });
         imageView.startAnimation(animation);
     }
+    public static void startanim(int resOfImage,int row1,int column1,int row2,int column2,int widthOfSquere){
+        System.out.println("--------------START----------------------");
+        ImageView imageView=new ImageView(InGameMode2And3Activity.activity);
+        imageView.setImageResource(resOfImage);
+        relative.addView(imageView,new RelativeLayout.LayoutParams(widthOfSquere, widthOfSquere));
+
+        Animation animation=new TranslateAnimation(column1*widthOfSquere,column2*widthOfSquere,row1*widthOfSquere,row2*widthOfSquere);
+        animation.setDuration(1000);
+        animation.setRepeatCount(0);
+        animation.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+                System.out.println("--------------ONANIMSTART----------------------");
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                relative.removeAllViews();
+                System.out.println("--------------ONANIMEND----------------------");
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+        imageView.startAnimation(animation);
+    }
 }
