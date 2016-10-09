@@ -608,7 +608,8 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/relative"></RelativeLayout>
+            android:id="@+id/relative"
+            android:layout_gravity="right|top"></RelativeLayout>
     </FrameLayout>
 
 </LinearLayout>

@@ -99,6 +99,50 @@ public class Square {
         }
     }
 
+    public ImageView getImage(){
+        ImageView img=new ImageView(InGameMode2And3Activity.activity);
+        if (this.isWhite) {
+            img.setBackgroundResource(R.drawable.white);
+            if (this.checker != null) {
+                if (this.checker.isWhite()) {
+                    if (this.checker.isKing()) {
+                        img.setImageResource(R.mipmap.white_king);
+                    } else {
+                        img.setImageResource(R.mipmap.white_checker);
+                    }
+                } else {
+                    if (this.checker.isKing()) {
+                        img.setImageResource(R.mipmap.black_king);
+                    } else {
+                        img.setImageResource(R.mipmap.black_checker);
+                    }
+                }
+            }else {
+                img.setImageResource(0);
+            }
+        } else {
+            img.setBackgroundResource(R.drawable.black);
+            if (this.checker != null) {
+                if (this.checker.isWhite()) {
+                    if (this.checker.isKing()) {
+                        img.setImageResource(R.mipmap.white_king);
+                    } else {
+                        img.setImageResource(R.mipmap.white_checker);
+                    }
+                } else {
+                    if (this.checker.isKing()) {
+                        img.setImageResource(R.mipmap.black_king);
+                    } else {
+                        img.setImageResource(R.mipmap.black_checker);
+                    }
+                }
+            }else {
+                img.setImageResource(0);
+            }
+        }
+        return img;
+    }
+
     public void drawSquare2() {
         ImageView img = (ImageView) ((TableRow) CommonDisplayActivity.board.getChildAt(this.row)).getChildAt(this.column);
         if (this.isWhite) {

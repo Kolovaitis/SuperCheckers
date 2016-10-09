@@ -1,5 +1,7 @@
 package by.superteam.supercheckers;
 
+import android.widget.ImageView;
+
 /**
  * Created by Влад on 04.10.2016.
  */
@@ -31,6 +33,24 @@ public class Checker {
 
     public void setRow(int row) {
         this.row = row;
+    }
+
+    public ImageView getView(){
+        ImageView img=new ImageView(InGameMode2And3Activity.activity);
+        if(isWhite()){
+            if(isKing()){
+                img.setBackgroundResource(R.mipmap.white_king);
+            }else{
+                img.setBackgroundResource(R.mipmap.white_checker);
+            }
+        }else{
+            if(isKing()){
+                img.setBackgroundResource(R.mipmap.black_king);
+            }else{
+                img.setBackgroundResource(R.mipmap.black_checker);
+            }
+        }
+        return img;
     }
 
     public boolean isWhite() {
