@@ -1214,12 +1214,12 @@ public class InGameMode2And3Activity extends AppCompatActivity {
     public void test(View v) {
         Toast.makeText(this,"В разработке",Toast.LENGTH_SHORT).show();
     }
-    public void startanim(ImageView view,int deltX,int deltY){
+    public void startanim(ImageView view1,ImageView view2){
         ImageView imageView=new ImageView(InGameMode2And3Activity.activity);
-        imageView.setImageMatrix(view.getImageMatrix());
+        imageView.setImageMatrix(view1.getImageMatrix());
         relative.addView(imageView,new ActionBar.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT));
 
-        Animation animation=new TranslateAnimation(view.getLeft(),deltX,view.getTop(),deltY);
+        Animation animation=new TranslateAnimation(view1.getLeft(),view2.getLeft(),view1.getTop(),view2.getTop());
         animation.setDuration(1000);
         animation.setRepeatCount(0);
         animation.setAnimationListener(new Animation.AnimationListener() {
