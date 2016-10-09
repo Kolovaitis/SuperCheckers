@@ -589,7 +589,7 @@ public class InGameMode2And3Activity extends AppCompatActivity {
                 }
                 if (veryDeadGreen.indexOf(squares[row][column]) != -1) {
                     if (deadGreenlb.indexOf(squares[row][column]) != -1) {
-                        startanim(purple.getImage(),squares[row][column].getImage());
+                        startanim((ImageView) ((TableRow) InGameMode2And3Activity.board.getChildAt(purple.getRow())).getChildAt(purple.getColumn()),(ImageView) ((TableRow) InGameMode2And3Activity.board.getChildAt(squares[row][column].getRow())).getChildAt(squares[row][column].getColumn()));
                         squares[row][column].setChecker(purple.getChecker());
                         purple.setChecker(null);
                         redlb.setChecker(null);
@@ -601,7 +601,7 @@ public class InGameMode2And3Activity extends AppCompatActivity {
                         ifprogress1(row, column);
                     } else {
                         if (deadGreenlt.indexOf(squares[row][column]) != -1) {
-                            startanim(purple.getImage(),squares[row][column].getImage());
+                             startanim((ImageView) ((TableRow) InGameMode2And3Activity.board.getChildAt(purple.getRow())).getChildAt(purple.getColumn()),(ImageView) ((TableRow) InGameMode2And3Activity.board.getChildAt(squares[row][column].getRow())).getChildAt(squares[row][column].getColumn()));
                             squares[row][column].setChecker(purple.getChecker());
                             purple.setChecker(null);
                             redlt.setChecker(null);
@@ -613,7 +613,7 @@ public class InGameMode2And3Activity extends AppCompatActivity {
                             ifprogress1(row, column);
                         } else {
                             if (deadGreenrb.indexOf(squares[row][column]) != -1) {
-                                startanim(purple.getImage(),squares[row][column].getImage());
+                                 startanim((ImageView) ((TableRow) InGameMode2And3Activity.board.getChildAt(purple.getRow())).getChildAt(purple.getColumn()),(ImageView) ((TableRow) InGameMode2And3Activity.board.getChildAt(squares[row][column].getRow())).getChildAt(squares[row][column].getColumn()));
                                 squares[row][column].setChecker(purple.getChecker());
                                 purple.setChecker(null);
                                 redrb.setChecker(null);
@@ -625,7 +625,7 @@ public class InGameMode2And3Activity extends AppCompatActivity {
                                 ifprogress1(row, column);
                             } else {
                                 if (deadGreenrt.indexOf(squares[row][column]) != -1) {
-                                    startanim(purple.getImage(),squares[row][column].getImage());
+                                     startanim((ImageView) ((TableRow) InGameMode2And3Activity.board.getChildAt(purple.getRow())).getChildAt(purple.getColumn()),(ImageView) ((TableRow) InGameMode2And3Activity.board.getChildAt(squares[row][column].getRow())).getChildAt(squares[row][column].getColumn()));
                                     squares[row][column].setChecker(purple.getChecker());
                                     purple.setChecker(null);
                                     redrt.setChecker(null);
@@ -642,7 +642,7 @@ public class InGameMode2And3Activity extends AppCompatActivity {
                 } else {
                     if (veryDeadGreen.size() == 0) {
                         if (green.indexOf(squares[row][column]) != -1) {
-                            startanim(purple.getImage(),squares[row][column].getImage());
+                             startanim((ImageView) ((TableRow) InGameMode2And3Activity.board.getChildAt(purple.getRow())).getChildAt(purple.getColumn()),(ImageView) ((TableRow) InGameMode2And3Activity.board.getChildAt(squares[row][column].getRow())).getChildAt(squares[row][column].getColumn()));
                             squares[row][column].setChecker(purple.getChecker());
                             purple.setChecker(null);
                             clean();
@@ -652,7 +652,7 @@ public class InGameMode2And3Activity extends AppCompatActivity {
                             finder(false);
                         }
                         if (deadGreenlb.indexOf(squares[row][column]) != -1) {
-                            startanim(purple.getImage(),squares[row][column].getImage());
+                             startanim((ImageView) ((TableRow) InGameMode2And3Activity.board.getChildAt(purple.getRow())).getChildAt(purple.getColumn()),(ImageView) ((TableRow) InGameMode2And3Activity.board.getChildAt(squares[row][column].getRow())).getChildAt(squares[row][column].getColumn()));
                             squares[row][column].setChecker(purple.getChecker());
                             purple.setChecker(null);
                             redlb.setChecker(null);
@@ -664,7 +664,7 @@ public class InGameMode2And3Activity extends AppCompatActivity {
                             ifprogress1(row, column);
                         }
                         if (deadGreenrb.indexOf(squares[row][column]) != -1) {
-                            startanim(purple.getImage(),squares[row][column].getImage());
+                             startanim((ImageView) ((TableRow) InGameMode2And3Activity.board.getChildAt(purple.getRow())).getChildAt(purple.getColumn()),(ImageView) ((TableRow) InGameMode2And3Activity.board.getChildAt(squares[row][column].getRow())).getChildAt(squares[row][column].getColumn()));
                             squares[row][column].setChecker(purple.getChecker());
                             purple.setChecker(null);
                             redrb.setChecker(null);
@@ -676,7 +676,7 @@ public class InGameMode2And3Activity extends AppCompatActivity {
                             ifprogress1(row, column);
                         }
                         if (deadGreenrt.indexOf(squares[row][column]) != -1) {
-                            startanim(purple.getImage(),squares[row][column].getImage());
+                             startanim((ImageView) ((TableRow) InGameMode2And3Activity.board.getChildAt(purple.getRow())).getChildAt(purple.getColumn()),(ImageView) ((TableRow) InGameMode2And3Activity.board.getChildAt(squares[row][column].getRow())).getChildAt(squares[row][column].getColumn()));
                             squares[row][column].setChecker(purple.getChecker());
                             purple.setChecker(null);
                             redrt.setChecker(null);
@@ -688,7 +688,7 @@ public class InGameMode2And3Activity extends AppCompatActivity {
                             ifprogress1(row, column);
                         }
                         if (deadGreenlt.indexOf(squares[row][column]) != -1) {
-                            startanim(purple.getImage(),squares[row][column].getImage());
+                             startanim((ImageView) ((TableRow) InGameMode2And3Activity.board.getChildAt(purple.getRow())).getChildAt(purple.getColumn()),(ImageView) ((TableRow) InGameMode2And3Activity.board.getChildAt(squares[row][column].getRow())).getChildAt(squares[row][column].getColumn()));
                             squares[row][column].setChecker(purple.getChecker());
                             purple.setChecker(null);
                             redlt.setChecker(null);
@@ -988,7 +988,7 @@ public class InGameMode2And3Activity extends AppCompatActivity {
                 }
                 if(veryDeadGreen.indexOf(squares[row][column])!=-1){
                     if (deadGreenlb.indexOf(squares[row][column]) != -1) {
-                        startanim(purple.getImage(),squares[row][column].getImage());
+                         startanim((ImageView) ((TableRow) InGameMode2And3Activity.board.getChildAt(purple.getRow())).getChildAt(purple.getColumn()),(ImageView) ((TableRow) InGameMode2And3Activity.board.getChildAt(squares[row][column].getRow())).getChildAt(squares[row][column].getColumn()));
                         squares[row][column].setChecker(purple.getChecker());
                         purple.setChecker(null);
                         redlb.setChecker(null);
@@ -1000,7 +1000,7 @@ public class InGameMode2And3Activity extends AppCompatActivity {
                         ifprogress4(row, column);
                     } else {
                         if (deadGreenlt.indexOf(squares[row][column]) != -1) {
-                            startanim(purple.getImage(),squares[row][column].getImage());
+                             startanim((ImageView) ((TableRow) InGameMode2And3Activity.board.getChildAt(purple.getRow())).getChildAt(purple.getColumn()),(ImageView) ((TableRow) InGameMode2And3Activity.board.getChildAt(squares[row][column].getRow())).getChildAt(squares[row][column].getColumn()));
                             squares[row][column].setChecker(purple.getChecker());
                             purple.setChecker(null);
                             redlt.setChecker(null);
@@ -1012,7 +1012,7 @@ public class InGameMode2And3Activity extends AppCompatActivity {
                             ifprogress4(row, column);
                         } else {
                             if (deadGreenrb.indexOf(squares[row][column]) != -1) {
-                                startanim(purple.getImage(),squares[row][column].getImage());
+                                 startanim((ImageView) ((TableRow) InGameMode2And3Activity.board.getChildAt(purple.getRow())).getChildAt(purple.getColumn()),(ImageView) ((TableRow) InGameMode2And3Activity.board.getChildAt(squares[row][column].getRow())).getChildAt(squares[row][column].getColumn()));
                                 squares[row][column].setChecker(purple.getChecker());
                                 purple.setChecker(null);
                                 redrb.setChecker(null);
@@ -1024,7 +1024,7 @@ public class InGameMode2And3Activity extends AppCompatActivity {
                                 ifprogress4(row, column);
                             } else {
                                 if (deadGreenrt.indexOf(squares[row][column]) != -1) {
-                                    startanim(purple.getImage(),squares[row][column].getImage());
+                                     startanim((ImageView) ((TableRow) InGameMode2And3Activity.board.getChildAt(purple.getRow())).getChildAt(purple.getColumn()),(ImageView) ((TableRow) InGameMode2And3Activity.board.getChildAt(squares[row][column].getRow())).getChildAt(squares[row][column].getColumn()));
                                     squares[row][column].setChecker(purple.getChecker());
                                     purple.setChecker(null);
                                     redrt.setChecker(null);
@@ -1041,7 +1041,7 @@ public class InGameMode2And3Activity extends AppCompatActivity {
                 }else {
                     if (veryDeadGreen.size() == 0) {
                         if (green.indexOf(squares[row][column]) != -1) {
-                            startanim(purple.getImage(),squares[row][column].getImage());
+                             startanim((ImageView) ((TableRow) InGameMode2And3Activity.board.getChildAt(purple.getRow())).getChildAt(purple.getColumn()),(ImageView) ((TableRow) InGameMode2And3Activity.board.getChildAt(squares[row][column].getRow())).getChildAt(squares[row][column].getColumn()));
                             squares[row][column].setChecker(purple.getChecker());
                             purple.setChecker(null);
                             clean();
@@ -1051,7 +1051,7 @@ public class InGameMode2And3Activity extends AppCompatActivity {
                             finder(true);
                         }
                         if (deadGreenlb.indexOf(squares[row][column]) != -1) {
-                            startanim(purple.getImage(),squares[row][column].getImage());
+                             startanim((ImageView) ((TableRow) InGameMode2And3Activity.board.getChildAt(purple.getRow())).getChildAt(purple.getColumn()),(ImageView) ((TableRow) InGameMode2And3Activity.board.getChildAt(squares[row][column].getRow())).getChildAt(squares[row][column].getColumn()));
                             squares[row][column].setChecker(purple.getChecker());
                             purple.setChecker(null);
                             redlb.setChecker(null);
@@ -1063,7 +1063,7 @@ public class InGameMode2And3Activity extends AppCompatActivity {
                             ifprogress4(row, column);
                         }
                         if (deadGreenrb.indexOf(squares[row][column]) != -1) {
-                            startanim(purple.getImage(),squares[row][column].getImage());
+                             startanim((ImageView) ((TableRow) InGameMode2And3Activity.board.getChildAt(purple.getRow())).getChildAt(purple.getColumn()),(ImageView) ((TableRow) InGameMode2And3Activity.board.getChildAt(squares[row][column].getRow())).getChildAt(squares[row][column].getColumn()));
                             squares[row][column].setChecker(purple.getChecker());
                             purple.setChecker(null);
                             redrb.setChecker(null);
@@ -1075,7 +1075,7 @@ public class InGameMode2And3Activity extends AppCompatActivity {
                             ifprogress4(row, column);
                         }
                         if (deadGreenrt.indexOf(squares[row][column]) != -1) {
-                            startanim(purple.getImage(),squares[row][column].getImage());
+                             startanim((ImageView) ((TableRow) InGameMode2And3Activity.board.getChildAt(purple.getRow())).getChildAt(purple.getColumn()),(ImageView) ((TableRow) InGameMode2And3Activity.board.getChildAt(squares[row][column].getRow())).getChildAt(squares[row][column].getColumn()));
                             squares[row][column].setChecker(purple.getChecker());
                             purple.setChecker(null);
                             redrt.setChecker(null);
@@ -1087,7 +1087,7 @@ public class InGameMode2And3Activity extends AppCompatActivity {
                             ifprogress4(row, column);
                         }
                         if (deadGreenlt.indexOf(squares[row][column]) != -1) {
-                            startanim(purple.getImage(),squares[row][column].getImage());
+                             startanim((ImageView) ((TableRow) InGameMode2And3Activity.board.getChildAt(purple.getRow())).getChildAt(purple.getColumn()),(ImageView) ((TableRow) InGameMode2And3Activity.board.getChildAt(squares[row][column].getRow())).getChildAt(squares[row][column].getColumn()));
                             squares[row][column].setChecker(purple.getChecker());
                             purple.setChecker(null);
                             redlt.setChecker(null);
@@ -1233,6 +1233,7 @@ public class InGameMode2And3Activity extends AppCompatActivity {
         Toast.makeText(this,"В разработке",Toast.LENGTH_SHORT).show();
     }
     public static void startanim(ImageView view1,ImageView view2){
+        System.out.println("--------------START----------------------");
         ImageView imageView=new ImageView(InGameMode2And3Activity.activity);
         imageView.setImageMatrix(view1.getImageMatrix());
         relative.addView(imageView,new ActionBar.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT));
@@ -1243,12 +1244,13 @@ public class InGameMode2And3Activity extends AppCompatActivity {
         animation.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
-
+                System.out.println("--------------ONANIMSTART----------------------");
             }
 
             @Override
             public void onAnimationEnd(Animation animation) {
                 relative.removeAllViews();
+                System.out.println("--------------ONANIMEND----------------------");
             }
 
             @Override
